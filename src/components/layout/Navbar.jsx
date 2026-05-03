@@ -12,12 +12,18 @@ const Navbar = () => {
 
   const handleNav = (target) => {
     setIsOpen(false);
+    
+    // Ensure the target is a hash
+    const hash = target.startsWith("#") ? target : `#${target}`;
+
     if (location.pathname !== "/") {
-      navigate(`/${target}`);
+      navigate(`/${hash}`);
     } else {
-      const element = document.querySelector(target);
+      const element = document.querySelector(hash);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 100);
       }
     }
   };
@@ -27,7 +33,6 @@ const Navbar = () => {
       <nav className="fixed top-0 left-0 w-full bg-[#050609]/80 backdrop-blur-xl z-[60] border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex justify-between items-center">
           
-          {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
             <div className="relative">
               <img
@@ -42,7 +47,6 @@ const Navbar = () => {
             </span>
           </Link>
 
-          {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-10">
             <button onClick={() => handleNav("#about")} className="text-sm font-bold tracking-widest uppercase text-gray-400 hover:text-white transition-colors">
               About
@@ -62,7 +66,6 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Mobile UI */}
           <div className="flex md:hidden items-center gap-4">
             <button
               onClick={() => setShowQR(true)}
@@ -85,7 +88,6 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Dropdown */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -95,6 +97,7 @@ const Navbar = () => {
               className="md:hidden bg-[#0a0c10] border-t border-white/5 overflow-hidden"
             >
               <div className="flex flex-col items-center gap-8 py-12">
+                {/* Fixed the mobile button targets to match the desktop ones */}
                 <button onClick={() => handleNav("#about")} className="text-lg font-bold tracking-widest uppercase text-gray-400">About</button>
                 <button onClick={() => handleNav("#gallery")} className="text-lg font-bold tracking-widest uppercase text-gray-400">Gallery</button>
                 <button onClick={() => handleNav("#motivation")} className="text-lg font-bold tracking-widest uppercase text-gray-400">Motivation</button>
@@ -106,7 +109,6 @@ const Navbar = () => {
         </AnimatePresence>
       </nav>
 
-      {/* Shared Modal triggered by showQR state */}
       <WhatsAppModal 
         isOpen={showQR} 
         onClose={() => setShowQR(false)} 

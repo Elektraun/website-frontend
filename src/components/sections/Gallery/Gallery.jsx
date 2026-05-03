@@ -13,16 +13,15 @@ import TCS10K2026_full from "../../../assets/images/tcs_2026_full.jpg";
 // Update these imports to match your local file structure
 const galleryData = [
   { id: 1, src: BMM2025, title: "BMM 2025", subtitle: "Midnight Endurance" },
-  { id: 2, src: TCS10K2026, title: "TCS 10K 2026", subtitle: "The Vidhana Soudha Sprint" },
-  { id: 3, src: TCS10K2026_main, title: "TCS 10K 2026", subtitle: "Main Event Glory" },
-  { id: 4, src: tuffman_2026, title: "Tuffman 2026", subtitle: "Building Absolute Grit" },
-  { id: 5, src: TCS10K2026_full, title: "TCS 10K Full", subtitle: "The 11KM Standard" },
+  { id: 2, src: TCS10K2026, title: "TCS World 10K 2026", subtitle: "The Vidhana Soudha Spirit" },
+  { id: 3, src: TCS10K2026_main, title: "TCS World 10K 2026", subtitle: "Main Event Glory" },
+  { id: 4, src: tuffman_2026, title: "Tuffman 2026", subtitle: "Nice Road Elevation" },
+  { id: 5, src: TCS10K2026_full, title: "TCS World 10K 2026", subtitle: "Full Squad Vibes" },
 ];
 
 const Gallery = () => {
   const [index, setIndex] = useState(0);
 
-  // 10 Second Interval Logic
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % galleryData.length);
@@ -60,28 +59,43 @@ const Gallery = () => {
         </div>
 
         {/* Carousel Container */}
-        <div className="relative h-[500px] md:h-[700px] w-full group">
+        <div className="relative h-[500px] md:h-[700px] w-full group rounded-2xl overflow-hidden border border-white/5 shadow-2xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8 }}
               className="absolute inset-0"
             >
-              {/* Main Slide Image */}
-              <img
-                src={galleryData[index].src}
-                alt={galleryData[index].title}
-                className="w-full h-full object-cover rounded-2xl grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 shadow-2xl"
-              />
+              {/* 1. AMBIENT BACKGROUND: Prevents cropping issues */}
+              <div className="absolute inset-0 z-0">
+                <img
+                  src={galleryData[index].src}
+                  alt=""
+                  className="w-full h-full object-cover blur-2xl opacity-40 scale-110"
+                />
+                <div className="absolute inset-0 bg-[#050609]/40" />
+              </div>
+
+              {/* 2. THE MAIN IMAGE: Uses 'contain' to ensure no cropping */}
+              <div className="relative z-10 w-full h-full flex items-center justify-center p-4 md:p-8">
+                <motion.img
+                  initial={{ scale: 0.95, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  src={galleryData[index].src}
+                  alt={galleryData[index].title}
+                  className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                />
+              </div>
               
-              {/* Slide Overlays */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#050609] via-transparent to-transparent opacity-80 rounded-2xl" />
+              {/* Slide Overlays (Vignette) */}
+              <div className="absolute inset-0 z-20 bg-gradient-to-t from-[#050609] via-transparent to-[#050609]/30 opacity-80" />
               
               {/* Content Overlay */}
-              <div className="absolute bottom-10 left-10 md:bottom-16 md:left-16">
+              <div className="absolute bottom-10 left-10 md:bottom-16 md:left-16 z-30">
                 <motion.p 
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -100,8 +114,8 @@ const Gallery = () => {
                 </motion.h4>
               </div>
 
-              {/* 10s Progress Bar (The Visual Countdown) */}
-              <div className="absolute bottom-0 left-0 h-1.5 bg-gray-800 w-full overflow-hidden rounded-b-2xl">
+              {/* Progress Bar */}
+              <div className="absolute bottom-0 left-0 h-1.5 bg-gray-800 w-full overflow-hidden z-40">
                 <motion.div 
                   key={`progress-${index}`}
                   initial={{ width: "0%" }}
@@ -113,16 +127,16 @@ const Gallery = () => {
             </motion.div>
           </AnimatePresence>
 
-          {/* Navigation Controls (Invisible but Functional) */}
+          {/* Navigation Controls */}
           <button 
             onClick={() => setIndex((index - 1 + galleryData.length) % galleryData.length)}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/20 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+            className="absolute left-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all z-50 hover:bg-cyan-400 hover:text-black"
           >
             ←
           </button>
           <button 
             onClick={() => setIndex((index + 1) % galleryData.length)}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/20 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+            className="absolute right-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all z-50 hover:bg-cyan-400 hover:text-black"
           >
             →
           </button>
@@ -133,3 +147,6 @@ const Gallery = () => {
 };
 
 export default Gallery;
+
+
+
