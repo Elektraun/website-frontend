@@ -323,6 +323,10 @@ import Join from "./components/sections/Join/Join";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MotivationRefined from "./components/sections/Motivation";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
+import AccountDashboard from "./components/account/AccountDashboard";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -333,31 +337,53 @@ function App() {
   }, []);
 
   return (
-    <>
-      {/* {isLoading ? (
-        <Preloader />
-      ) : ( */}
-        <>
-        <Navbar />
-          <Hero />
-          <About/>
-         
-          <MotivationRefined/>
-           <Gallery/>
-          <Footer/>
-        {/* <Routes>
-           
-          <Route path="/gallery" element={<Gallery/>}/>
-        </Routes> */}
-         
-          {/* <About />
-          <Motivation />
-          <Gallery />
-          <Join />
-          <Footer /> */}
-        </>
-      {/* )} */}
-    </>
+    <AuthProvider>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Navbar />
+              <Hero />
+              <About />
+              <MotivationRefined />
+              <Gallery />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <>
+              <Navbar />
+              <LoginPage />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <>
+              <Navbar />
+              <SignupPage />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/account"
+          element={
+            <>
+              <Navbar />
+              <AccountDashboard />
+              <Footer />
+            </>
+          }
+        />
+      </Routes>
+    </AuthProvider>
   );
 }
 
