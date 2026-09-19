@@ -30,7 +30,7 @@ const Gallery = () => {
   }, []);
 
   return (
-    <section id="gallery" className="relative py-24 bg-[#050609] overflow-hidden text-white">
+    <section id="gallery" className="relative overflow-hidden bg-white py-24 text-[#0b2355]">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         
         {/* Editorial Header */}
@@ -40,9 +40,9 @@ const Gallery = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-sm font-bold tracking-[0.3em] text-red-600 uppercase mb-2">The Archive</h3>
+            <h3 className="mb-2 text-sm font-bold uppercase tracking-[0.3em] text-[#ff1c29]">The Archive</h3>
             <h2 className="text-4xl md:text-6xl font-light leading-tight">
-              The <span className="font-serif italic text-white/80">Grind</span>. <br />
+              The <span className="font-serif italic text-[#0b2355]/70">Grind</span>. <br />
               The <span className="font-black uppercase tracking-tighter">Glory</span>.
             </h2>
           </motion.div>
@@ -52,14 +52,14 @@ const Gallery = () => {
                 <button 
                   key={i}
                   onClick={() => setIndex(i)}
-                  className={`h-1 transition-all duration-500 ${i === index ? 'w-12 bg-cyan-400' : 'w-4 bg-gray-700'}`}
+                  className={`h-1 transition-all duration-500 ${i === index ? 'w-12 bg-[#1257ed]' : 'w-4 bg-[#0b2355]/15'}`}
                 />
              ))}
           </div>
         </div>
 
         {/* Carousel Container */}
-        <div className="relative h-[500px] md:h-[700px] w-full group rounded-2xl overflow-hidden border border-white/5 shadow-2xl">
+        <div className="group relative h-[500px] w-full overflow-hidden rounded-2xl border border-[#0b2355]/10 shadow-xl md:h-[700px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={index}
@@ -76,7 +76,7 @@ const Gallery = () => {
                   alt=""
                   className="w-full h-full object-cover blur-2xl opacity-40 scale-110"
                 />
-                <div className="absolute inset-0 bg-[#050609]/40" />
+                <div className="absolute inset-0 bg-[#0b2355]/30" />
               </div>
 
               {/* 2. THE MAIN IMAGE: Uses 'contain' to ensure no cropping */}
@@ -92,7 +92,7 @@ const Gallery = () => {
               </div>
               
               {/* Slide Overlays (Vignette) */}
-              <div className="absolute inset-0 z-20 bg-gradient-to-t from-[#050609] via-transparent to-[#050609]/30 opacity-80" />
+              <div className="absolute inset-0 z-20 bg-gradient-to-t from-[#0b2355]/90 via-transparent to-[#0b2355]/25 opacity-80" />
               
               {/* Content Overlay */}
               <div className="absolute bottom-10 left-10 md:bottom-16 md:left-16 z-30">
@@ -100,7 +100,7 @@ const Gallery = () => {
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.4 }}
-                  className="text-cyan-400 font-mono text-sm tracking-[0.2em] mb-2"
+                  className="mb-2 font-mono text-sm tracking-[0.2em] text-[#64ee00]"
                 >
                   {galleryData[index].subtitle}
                 </motion.p>
@@ -108,7 +108,7 @@ const Gallery = () => {
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.5 }}
-                  className="text-4xl md:text-6xl font-black uppercase tracking-tighter"
+                  className="text-4xl font-black uppercase tracking-tighter text-white md:text-6xl"
                 >
                   {galleryData[index].title}
                 </motion.h4>
@@ -121,7 +121,7 @@ const Gallery = () => {
                   initial={{ width: "0%" }}
                   animate={{ width: "100%" }}
                   transition={{ duration: 10, ease: "linear" }}
-                  className="h-full bg-cyan-400"
+                  className="h-full bg-[#1257ed]"
                 />
               </div>
             </motion.div>

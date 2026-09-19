@@ -1,97 +1,34 @@
 import { motion } from "framer-motion";
-import TCS10K2026_vidhan from "../../assets/images/TCS10K_2026_vidhan.jpg";
+import TCS10K2026Vidhan from "../../assets/images/TCS10K_2026_vidhan.jpg";
 
-const About = () => {
-  return (
-    <section id="about" className="relative py-24 md:py-32 bg-[#050609] text-white overflow-hidden">
-      {/* Background Accent */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-cyan-900/10 to-transparent pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        
-        {/* --- Section Header --- */}
-        <motion.div 
-          className="max-w-3xl mb-20"
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h3 className="text-sm font-bold tracking-[0.3em] text-cyan-400 uppercase mb-4">
-            The Philosophy
-          </h3>
-          <h2 className="text-4xl md:text-6xl font-light leading-tight">
-            Beyond the <span className="font-serif italic text-white/80">Horizon</span>: <br />
-            <span className="font-black uppercase tracking-tighter">The Elektraun Ethos</span>
-          </h2>
-          <div className="w-24 h-1.5 bg-red-600 mt-6" />
+const About = () => (
+  <section id="about" className="relative overflow-hidden bg-white py-24 text-[#0b2355] md:py-32">
+    <div className="pointer-events-none absolute right-0 top-0 h-full w-1/3 bg-gradient-to-l from-[#1257ed]/10 to-transparent" />
+    <div className="mx-auto max-w-7xl px-6 lg:px-12">
+      <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="mb-20 max-w-3xl">
+        <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-[#1257ed]">The philosophy</p>
+        <h2 className="text-4xl font-light leading-tight md:text-6xl">Go further, <span className="font-serif italic text-[#0b2355]/70">together</span>.<br /><span className="font-black uppercase tracking-tighter">The Elektraun Ethos</span></h2>
+        <div className="mt-6 h-1.5 w-24 bg-[#ff1c29]" />
+      </motion.div>
+      <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-12">
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-8 lg:col-span-7">
+          <div className="space-y-6 text-lg leading-relaxed text-[#38517d] md:text-xl">
+            <p>At Elektraun, true transformation begins where comfort ends. Our standard starts at <strong className="text-[#1257ed]">11KM</strong>—not as a finish line, but as a baseline.</p>
+            <p className="border-l-4 border-[#1257ed] pl-6 font-medium text-[#0b2355]">“Conquer 11KM repeatedly and the half, full, and ultra become matters of time—not possibility.”</p>
+            <p>Running long is a masterclass in <strong>mental fortitude</strong>. With the pack, individual fatigue becomes collective momentum. We build more than faster legs: we build discipline, focus, and a resilient mindset for life beyond the route.</p>
+          </div>
+          <div className="grid grid-cols-1 gap-6 pt-4 md:grid-cols-2">
+            <div className="rounded-lg border-t-2 border-[#ff1c29] bg-[#f4f7ff] p-6"><h3 className="mb-2 text-sm font-bold uppercase text-[#1257ed]">The catalyst</h3><p className="text-base text-[#38517d]">Mastering 11KM breaks the distance barrier and makes the next challenge tangible.</p></div>
+            <div className="rounded-lg border-t-2 border-[#64ee00] bg-[#f4f7ff] p-6"><h3 className="mb-2 text-sm font-bold uppercase text-[#1257ed]">Collective grit</h3><p className="text-base text-[#38517d]">Running together aligns our pace and purpose. Consistency is easier with company.</p></div>
+          </div>
         </motion.div>
-
-        {/* --- Main Content Grid --- */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          
-          {/* Left: Marketing Narrative */}
-          <motion.div 
-            className="lg:col-span-7 space-y-8"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <div className="space-y-6 text-gray-300 text-lg md:text-xl leading-relaxed">
-              <p>
-                At Elektraun, we believe that true transformation begins where comfort ends. Our standard starts at <strong>11KM</strong>—not as a finish line, but as a baseline. 
-              </p>
-              
-              <p className="text-white font-medium border-l-4 border-cyan-400 pl-6">
-                "If you can conquer 11, the 21km half-marathon is a foregone conclusion. If you can sustain the 11km mindset, the 42km full and the world of Ultras are simply matters of time."
-              </p>
-
-              <p>
-                Running long is a masterclass in <strong>Mental Fortitude</strong>. When you run with the pack, individual fatigue is replaced by collective momentum. We don't just build faster legs; we build an iron mindset that carries over into every aspect of your life—discipline, focus, and relentless grit.
-              </p>
-            </div>
-
-            {/* Feature Highlights */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8">
-              <div className="bg-[#111625] p-6 rounded-lg border-t-2 border-red-600">
-                <h4 className="text-cyan-400 font-bold uppercase text-sm mb-2">The Catalyst</h4>
-                <p className="text-gray-400 text-base">Mastering 11km breaks the 'distance barrier,' making Marathons feel achievable.</p>
-              </div>
-              <div className="bg-[#111625] p-6 rounded-lg border-t-2 border-cyan-400">
-                <h4 className="text-cyan-400 font-bold uppercase text-sm mb-2">Collective Grit</h4>
-                <p className="text-gray-400 text-base">Running together synchronizes our pace and our purpose. We never leave a runner behind.</p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right: Visual Proof (IMG_6733.jpg) */}
-          <motion.div 
-            className="lg:col-span-5 relative"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-          >
-            <div className="relative z-10 overflow-hidden rounded-2xl shadow-2xl">
-              <img 
-                src={TCS10K2026_vidhan} 
-                alt="Elektraun Running Club at Vidhana Soudha" 
-                className="w-full h-auto grayscale-[30%] hover:grayscale-0 transition-all duration-700 hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#050609] via-transparent to-transparent opacity-60" />
-            </div>
-            
-            {/* Decorative Label */}
-            <div className="absolute z-30 -bottom-6 -right-6 bg-red-600 text-white px-8 py-4 font-black uppercase tracking-widest text-sm transform -rotate-2 shadow-xl">
-              11KM+ Collective
-            </div>
-          </motion.div>
-
-        </div>
+        <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="relative lg:col-span-5">
+          <div className="relative z-10 overflow-hidden rounded-2xl shadow-xl"><img src={TCS10K2026Vidhan} alt="Elektraun runners at Vidhana Soudha" className="w-full grayscale-[20%] transition-all duration-700 hover:scale-105 hover:grayscale-0" /><div className="absolute inset-0 bg-gradient-to-t from-[#0b2355] via-transparent to-transparent opacity-35" /></div>
+          <div className="absolute -bottom-6 -right-3 z-20 -rotate-2 bg-[#ff1c29] px-6 py-4 text-sm font-black uppercase tracking-widest text-white shadow-xl md:-right-6">11KM+ collective</div>
+        </motion.div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default About;
