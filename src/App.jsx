@@ -314,30 +314,22 @@
 
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
-import Preloader from "./components/layout/Preloader";
-
 import Hero from "./components/sections/Hero";
-import About from "./components/sections/About";
-import Gallery from "./components/sections/Gallery/Gallery";
-import Join from "./components/sections/Join/Join";
-import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import MotivationRefined from "./components/sections/Motivation";
+import { Routes, Route } from "react-router-dom";
+import HomeHighlights from "./components/sections/HomeHighlights";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import AccountDashboard from "./components/account/AccountDashboard";
+import ProjectChargedPage from "./pages/ProjectChargedPage";
+import AboutPage from "./pages/AboutPage";
+import Beyond11KMPage from "./pages/Beyond11KMPage";
 import { AuthProvider } from "./context/AuthContext";
+import ProjectChargedBanner from "./components/layout/ProjectChargedBanner";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 3500);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <AuthProvider>
+      <ProjectChargedBanner />
       <Routes>
         <Route
           path="/"
@@ -345,9 +337,37 @@ function App() {
             <>
               <Navbar />
               <Hero />
-              <About />
-              <MotivationRefined />
-              <Gallery />
+              <HomeHighlights />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/project-charged"
+          element={
+            <>
+              <Navbar />
+              <ProjectChargedPage />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <>
+              <Navbar />
+              <AboutPage />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/beyond-11km"
+          element={
+            <>
+              <Navbar />
+              <Beyond11KMPage />
               <Footer />
             </>
           }
